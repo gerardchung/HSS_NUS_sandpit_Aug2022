@@ -1,0 +1,199 @@
+---
+#title: "Humanities and Social Sciences (HSS) and New Technologies Sandpit | 15 Aug, 10AM - 1PM"
+
+title: <small>"Analyzing textual data from open-ended survey questions"</small>
+author: <small>Gerard Chung, <br>Social Service Research Centre</br></small>
+
+format:
+    revealjs: 
+        self-contained: true
+        theme: simple
+---
+
+## Survey on parents during Circuit-breaker
+
+![](pictures/cbparenting_question.png)
+
+::: aside
+<small>https://sgcovidparenting.mystrikingly.com/</small>
+:::
+
+::: notes
+One of my curiousity is to understand how to analyze text data from open-ended survey questions (first slide)
+
+\[2nd slide\] During the CB in 2020, we ran a cross-sectional survey to understand the difficulties experienced by parents during the two months of stay-home order. Our survey was overwhelmingly: (1) close-ended questions and (2) mostly focused on the negative things. How stressful were parents? Were there more conflicts among parents with children? How did pandemic impacted them?
+
+But at the end of the survey, we added in this qn which is open-ended and focused on how parents had cope in spite of the difficulties. We were very glad to have done it because the responses given by the parents were unique to each parent showcasing the different coping methods used. And all expressed in their own words.
+
+But the challenge was: how to analyze this large set of short text data in a replicable, quick, and valid way?
+:::
+
+## Impact of savings programs on youths' money management
+
+![](pictures/youthsave_qn.png)
+
+::: aside
+<small>https://gsdi.unc.edu/initiatives/youthsave-ghana/</small>
+:::
+
+::: notes
+The primary research objective of this project was to investigate the potential of savings accounts as a tool for youth development and financial inclusion in low- and middle-income countries. https://gsdi.unc.edu/initiatives/youthsave-ghana/
+:::
+
+## Benefits of open-ended survey questions
+
+::: incremental
+-   Capture respondents' experiences in their [own words]{.fragment style="color:#cc0000"}
+-   Gather [new information]{.fragment style="color:#cc0000"} about a topic
+-   [Supplement]{style="color:#cc0000"} quantitative findings
+:::
+
+::: notes
+-   clarify quantitative findings from close-ended survey questions
+-   Although one aim of research is to produce knowledge that is generalizable across people and settings, understanding the experiences of individuals -- especially social work clients -- remains a hallmark goal of social work research (Thyer, 2012).
+-   e.g., "How good was the movie?"), as compared to close-ended questions (e.g., "On a scale of 1 to 4, how would you rate the movie?").
+:::
+
+## Closed-ended questions is more prevalent
+
+::: incremental
+-   These questions offer a limited set of response options.
+-   "[easier]{style="color:#cc0000"} to ask, code, and analyze"[^1]
+:::
+
+[^1]: Geer,1991, p. 360 <small>
+
+## It is difficult with large "messy" text data
+
+<br>
+
+```{r}
+load(file = "data/vignette.RData")
+head(data$Q3, n = 20)
+```
+
+<br>
+
+<!-- -   With open-ended questions, we can understand respondents' attitudes and beliefs [as expressed in their own words]{.fragment} -->
+
+::: notes
+Far fewer surveys use open-ended questions to understand respondents' attitudes and beliefs as expressed in their own words. One reason for this comparative lack of open-ended survey questions is that the work of coding and analyzing unstructured data from open-ended survey questions is labor-intensive. Researchers are rarely able to manually read all the text documents because large amounts of time and energy are required and hiring coders to do it can be expensive (Jackson & Trochim, 2002; Roberts et al., 2014). In general, researchers consider close-ended survey questions "easier to ask, code, and analyze" (Geer, 1991, p. 360).
+:::
+
+##  {background-image="pictures/thor.png"}
+
+::: aside
+Credits: Chris Hemsworth as the title character in Thor: The Dark World. Photograph: Allstar/Marvel/Sportsphoto Ltd
+:::
+
+::: notes
+How can we solve this problem and more importantly produce results that are valid and replicale?
+:::
+
+## Topic modeling
+
+-   A [computational]{style="color:#cc0000"} method to extract knowledge from large amounts of textual data
+    -   [inductively]{style="color:#cc0000"} identifies latent topics among a large collection of documents and ...
+    -   [assigns]{style="color:#cc0000"} individual documents to one or more topical categories.
+
+## "What has help you cope with parenting?"
+
+![](pictures/topics_parentcb.png){fig-align="center"}
+
+<!-- {background-image="pictures/topics_parentcb.png" background-size="45%"} -->
+
+## ".. what would you do to set aside enough money to buy it later?"
+
+![](pictures/topics_youthsave.png){fig-align="center"}
+
+<!-- ![](background-image="pictures/topics_youthsave.png" background-size="40%") -->
+
+## Challenges {.smaller}
+
+-   Potentially useful text data [but hard to access]{.fragment style="color:#cc0000"}
+    -   case notes, risk assessments, social reports etc.
+
+::: incremental
+-   [Short text]{style="color:#cc0000"} challenge
+    -   severe data sparsity
+    -   biterm topic model
+-   Working with [qualitative]{style="color:#cc0000"} approaches
+    -   computational grounded theory framework (Nelson, 2020)
+    -   3-step: pattern detection -\> refinement -\> confirmation
+-   [Corpus linguistics]{style="color:#cc0000"} methods
+:::
+
+::: notes
+-   data sparsity problem - https://github.com/xiaohuiyan/xiaohuiyan.github.io/blob/master/paper/BTM-WWW13.pdf - directly applying these models on short texts will suffer from the severe data sparsity problem (i.e. the sparse word co-occurrence patterns in each short document) \[17\]. More specifically, 1) the occurrences of words in short document play less discriminative role compared to lengthy documents where the model has enough word counts to know how words are related \[17\] ; 2) The limited contexts make it more difficult for topic models to identify the senses of ambiguous words in short documents.
+
+-   Corpus linguistics: -statistical analysis of large collections of written or spoken data (corpora) to investigate -linguistic phenomena.
+
+    -   Compare with another corpus -Concordances methods
+:::
+
+##  {background="#43464B"}
+
+<!-- {background-color="aquamarine"} -->
+
+::: {style="text-align: centre;"}
+#### <br>Understanding the [experiences of social work clients]{style="color:#df8c8c"} remains a hallmark goal of social work research
+
+</br>
+:::
+
+::: aside
+<small>["The scientific value of qualitative research for social work" (Thyer, 2012)]{style="color:white"}</small>
+:::
+
+##  {.smaller}
+
+```{r setup, include=FALSE}
+library(fontawesome)
+```
+
+::: {style="text-align: right;"}
+![](pictures/gerardchung.png){height="200px"}
+
+Find me at:
+
+`r fa("twitter")` [\@GerardChung](https://twitter.com/GerardChung)
+
+`r fa("github")` [\@gerardchung](https://github.com/gerardchung)
+
+`r fa("link")` [gerardchung.com](www.gerardchung.com)
+:::
+
+## References {.smaller}
+
+-   Geer, J. G. (1991). Do open-ended questions measure "salient" issues? Public Opinion Quarterly, 55(3), 360--370. https://doi.org/10.1086/269268
+-   Thyer, B. A. (2012). The scientific value of qualitative research for social work. Qualitative Social Work, 11(2), 115--125. https://doi.org/10.1177/1473325011433928
+
+##  {background="#43464B"}
+
+<!-- {background-color="aquamarine"} -->
+
+::: {style="text-align: left;"}
+#### <br>Understanding the [experiences of social work clients]{style="color:#df8c8c"} remains a hallmark goal of social work research
+
+</br>
+:::
+
+::: aside
+<small>["The scientific value of qualitative research for social work" (Thyer, 2012)]{style="color:white"}</small>
+:::
+
+```{r, include=FALSE}
+library(fontawesome)
+```
+
+::: {style="text-align: right;"}
+![](pictures/gerardchung.png){height="150px"}
+
+Find me at:
+
+`r fa("twitter")` [\@GerardChung](https://twitter.com/GerardChung)
+
+`r fa("github")` [\@gerardchung](https://github.com/gerardchung)
+
+`r fa("link")` [gerardchung.com](www.gerardchung.com)
+:::
